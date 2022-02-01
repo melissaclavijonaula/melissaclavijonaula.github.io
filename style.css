@@ -1,0 +1,17 @@
+body{
+background-color: chocolate;
+color: white;
+}
+
+p#yellowparagraph{
+font-family: 'Courier New', Courier, monospace;
+font-size: 18px;
+}
+
+h1{
+font-size: larger;
+color: blueviolet; 
+background-color: burlywood; 
+margin: 0px;
+padding: 10px;
+}
