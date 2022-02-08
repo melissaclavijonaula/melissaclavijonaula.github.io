@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>In-Class JavaScript</title>
+  </head>
+  <body>
+
+    <h1 id="welcome"></h1>
+    <script src="math.js"></script>
+
+    <script>
+
+    // Numbers
+     var myNumber = 42;
+
+     myNumber = myNumber + 10;
+     console.log(myNumber, myNumber / 2);
+    // Strings
+     var myString = "Javascript is cool!";
+     console.log("D3 and " + myString);
+
+    // Booleans
+     var bigNumber = myNumber > 100;
+     console.log(bigNumber);
+
+    //Array or Lists 
+    var myArray =["Melissa", myNumber, bigNumber, 100];
+    // Any line starting with double slashes is a comment
+    // that will not be interpreted by the browser.
+    // This should print out "two"
+    console.log(myArray);
+
+    //Object Variables 
+    var myObject = {
+        name: "Melissa",
+        color: "red",
+        height: 72, 
+        favoriteNumber: myNumber
+    };
+    console.log(myObject);
+
+    //Functions 
+
+    sayHello("Jovi");
+    sayHello("Toya");
+    sayHello("Camila");
+
+    //Function Variables 
+    // this is called passing a variable 
+    var sayText = function(txt) {
+    console.log(txt);
+    }
+    sayText("Goodbye");
+
+    //Conditional 
+    if (myNumber > 100) {
+        console.log("wow bigger than 100!");
+    }
+    else if (myNumber > 50) {
+        console.log("ok, decent, bigger than 50")
+    }
+    else {
+        console.log("Sorry, samll number...")
+    }
+
+    //Interacting with DOM 
+    
+    var title = document.getElementById("welcome");
+    console.log(title)
+    title.innerHTML = "Welcome" + name + "!";
+
+    </script>
+
+  </body>
+</html>
