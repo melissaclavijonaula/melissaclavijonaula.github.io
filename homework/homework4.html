@@ -9,15 +9,15 @@
   </head>
   <body>
 
-    <h1 id="title"> Welcome!</h1>
+    <h1 id="title"> Drawing Squares </h1>
 
-    <svg id="circleCanvas"></svg>
+    <svg id="rectsCanvas"></svg>
 
     <script>
 
         d3.select("#title")
         .attr("class", "big")
-        .style("color", "red");
+        .style("color", "orange");
 
         var data2010 = [
             {
@@ -45,17 +45,16 @@
             },
         ]
 
-        function drawCircles(dataArray) {
+        function drawRects(dataArray) {
 
-            var circles = d3.select("#circleCanvas")
-            .selectAll("circle")
+            var rects = d3.select("#rectCanvas")
+            .selectAll("rect")
             .data(dataArray, function(currentDataPoint){
                console.log(currentDataPoint);
                return currentDataPoint.country;
             });
 
-
-            circles
+            rects
             .transition().duration(1000)
                .attr("cx", function (d){
                  return d.value * 10;
@@ -64,8 +63,8 @@
                  return d.value;
             });
 
-            circles.enter().append("circle")
-             .attr("class","myCircle")
+            rects.enter().append("rect")
+             .attr("class","myRect")
              .attr ("cy",100)
              .attr("cx", function (d){
                  return d.value * 10;
@@ -77,18 +76,24 @@
                  return d.value;
              });
 
-             circles.exit().remove();
+             rects.exit().remove();
 
             //Exit 
-            circles.exit()
+            rects.exit()
               .transition().duration(1000)
               .attr("r",0)
               .attr("fil","red")
               .remove();
 
+              d3.select("rect")
+                .transition()
+                .duration(1000)
+                .attr("rx",0)
+                .attr("ry",0);
+
             }
 
-            drawCircles(data2010);
+            drawRects(data2010);
              
         </script>
 
