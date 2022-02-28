@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homework 4</title>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  </head>
+  <body>
+
+    <h1 id="title"> Drawing Squares </h1>
+
+    <svg id="rectCanvas" height="500px" width="100%">
+    </svg>
+
+    <script>
+    d3.select("#title")
+    .style("color", "orange");
+
+    var data2010 = [
+        {
+            country: "usa",
+            value: 20
+        },
+        {
+            country: "chn",
+            value: 25
+        },
+        {
+            country: "mex",
+            value: 15
+        }
+    ];
+
+    var data2015 = [
+        {
+            country: "usa",
+            value: 30
+        },
+        {
+            country: "chn",
+            value: 10
+        },
+    ];
+
+    function drawRects(dataArray) {
+
+        var rects = d3.select("#rectCanvas")
+        .selectAll("rect")
+        .data(dataArray, function(currentDataPoint){
+           console.log(currentDataPoint.country);
+           return currentDataPoint.country;
+        });
+
+        //update
+        rects
+        .transition().duration(1000)
+           .attr("x", function (d){
+             return d.value * 10;
+         })
+         .attr("y", function(d) {
+             return d.value;
+        })
+        .attr("fill", "blue");
+
+        //enter
+        rects.enter().append("rect")
+         .attr("class","myRect")
+         .attr("width",50)
+         .attr("height",50)
+         .attr ("y",100)
+         .attr("x", function (d){
+             return d.value * 10;
+         })
+
+        // transition 
+
+
+        //Exit 
+        rects.exit()
+          .transition().duration(1000)
+          .attr("y",100)
+          .attr("x",100)
+          .remove();
+
+
+        }
+
+        drawRects(data2010);
+         
+    </script>
+
+    </body>
+    </html>

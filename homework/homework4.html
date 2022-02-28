@@ -11,92 +11,84 @@
 
     <h1 id="title"> Drawing Squares </h1>
 
-    <svg id="rectCanvas" height="500px" width="100%">
-        <rect x= y= width= height= 
-          fill="white"/></svg>
+    <svg id="rectCanvas" height="500px" width="100%"></svg>
 
     <script>
 
-        d3.select("#title")
-        .attr("class", "big")
-        .style("color", "orange");
+d3.select("#title")
+.attr("class", "big")
+.style("color", "red");
 
-        var data2010 = [
-            {
-                country: "usa",
-                value: 20
-            },
-            {
-                country: "chn",
-                value: 25
-            },
-            {
-                country: "mex",
-                value: 15
-            }
-        ]
+var data2010 = [
+    {
+        country: "usa",
+        value: 20
+    },
+    {
+        country: "chn",
+        value: 25
+    },
+    {
+        country: "mex",
+        value: 15
+    }
+]
 
-        var data2015 = [
-            {
-                country: "usa",
-                value: 30
-            },
-            {
-                country: "chn",
-                value: 10
-            },
-        ]
+var data2015 = [
+    {
+        country: "usa",
+        value: 30
+    },
+    {
+        country: "chn",
+        value: 10
+    },
+]
 
-        function drawRects(dataArray) {
+function drawCircles(dataArray) {
 
-            var rects = d3.select("#rectCanvas")
-            .selectAll("rect")
-            .data(dataArray, function(currentDataPoint){
-               console.log(currentDataPoint);
-               return currentDataPoint.country;
-            });
+    var circles = d3.select("#rectCanvas")
+    .selectAll("rect")
+    .data(dataArray, function(currentDataPoint){
+       console.log(currentDataPoint);
+       return currentDataPoint.country;
+    });
 
-            rects
-            .transition().duration(1000)
-               .attr("x", function (d){
-                 return d.value * 10;
-             })
-             .attr ("x", function(d) {
-                 return d.value;
-            });
 
-            rects.enter().append("rect")
-             .attr("class","myRect")
-             .attr ("y",100)
-             .attr("x", function (d){
-                 return d.value * 10;
-             })
-             //animate transition
-             .attr("x", 0)
-             .transition().duration(1000)
-             .attr ("x", function(d) {
-                 return d.value;
-             });
+    circles
+    .transition().duration(1000)
+       .attr("cx", function (d){
+         return d.value * 10;
+     })
+     .attr ("r", function(d) {
+         return d.value;
+    });
 
-             rects.exit().remove();
+    circles.enter().append("circle")
+     .attr("class","myCircle")
+     .attr ("cy",100)
+     .attr("cx", function (d){
+         return d.value * 10;
+     })
+     //animate transition
+     .attr("r", 0)
+     .transition().duration(1000)
+     .attr ("r", function(d) {
+         return d.value;
+     });
 
-            //Exit 
-            rects.exit()
-              .transition().duration(1000)
-              .attr("y",0)
-              .attr("x",0)
-              .remove();
+     circles.exit().remove();
 
-              d3.select("rect")
-                .transition()
-                .duration(1000)
-                .attr("x",0)
-                .attr("y",0);
+    //Exit 
+    circles.exit()
+      .transition().duration(1000)
+      .attr("r",0)
+      .attr("fil","red")
+      .remove();
 
-            }
+    }
 
-            drawRects(data2010);
-             
+    drawCircles(data2010);
         </script>
 
   </body>
