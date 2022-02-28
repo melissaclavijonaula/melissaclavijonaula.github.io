@@ -74,7 +74,14 @@
              return d.value * 10;
          })
 
-        // transition 
+        //animate transition
+        .attr("width", 0)
+             .transition().duration(1000)
+             .attr ("width", function(d) {
+                 return d.value;
+             });
+
+             circles.exit().remove();
 
 
         //Exit 
