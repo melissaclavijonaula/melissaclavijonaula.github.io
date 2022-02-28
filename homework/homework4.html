@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>D3 Basics</title>
+    <title>Homework 4</title>
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
@@ -58,23 +58,23 @@
 
             rects
             .transition().duration(1000)
-               .attr("cx", function (d){
+               .attr("x", function (d){
                  return d.value * 10;
              })
-             .attr ("r", function(d) {
+             .attr ("x", function(d) {
                  return d.value;
             });
 
             rects.enter().append("rect")
              .attr("class","myRect")
-             .attr ("cy",100)
-             .attr("cx", function (d){
+             .attr ("y",100)
+             .attr("x", function (d){
                  return d.value * 10;
              })
              //animate transition
-             .attr("r", 0)
+             .attr("x", 0)
              .transition().duration(1000)
-             .attr ("r", function(d) {
+             .attr ("x", function(d) {
                  return d.value;
              });
 
@@ -83,15 +83,15 @@
             //Exit 
             rects.exit()
               .transition().duration(1000)
-              .attr("r",0)
-              .attr("fil","red")
+              .attr("y",0)
+              .attr("x",0)
               .remove();
 
               d3.select("rect")
                 .transition()
                 .duration(1000)
-                .attr("rx",0)
-                .attr("ry",0);
+                .attr("x",0)
+                .attr("y",0);
 
             }
 
