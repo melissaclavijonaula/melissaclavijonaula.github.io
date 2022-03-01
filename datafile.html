@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Data Manipulation</title>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  </head>
+
+  <body>
+      <script>
+
+          d3.text("file.txt")
+          .then(function(textFile){
+              console.log(textFile);
+          })
+          .catch(function(error) {
+              console.log(error);
+          });    
+
+          d3.csv("file.csv")
+          .then(function(csvData) {
+            console.log(csvData);
+          });
+
+          d3.json("file.json")
+             .then(function(data) {
+             console.log(data);
+          });
+          
+        // loading from an API
+        var url = "https://datausa.io/api/data?measures=Population&year=latest";
+
+         d3.json(url)
+           .then(function(apiData) {
+           console.log(apiData);
+            });
+
+       //Downloaded data 
+        d3.csv("top50.csv.xls")
+        .then(function(dataSpotify){
+
+          dataSpotify.forEach(function(d) {
+            d.Rank = parseFloat(d.Rank);
+            d["Loudness..dB.."] = parseFloat(d["Loudness..dB.."]);
+            d.Energy = parseFloat(d.Energy);
+          });
+       //Create a filter 
+          var quietSong = dataSpotify.filter(function(d){
+            return d.Energy < 80;
+          });
+
+          var lowesEnergy = d3.max(dataSpotify,function(d){
+            return d.Energy;
+          });
+
+          console.log(dataSpotify);
+          console.log(quietSong);
+        });
+
+
+
+      
+
+
+
+    </script>
+  </body>
