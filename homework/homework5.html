@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homework 5 </title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+     
+     d3.csv("./NetflixSubscriptions")
+          .then(function(NetflixSubscriptions) {
+            console.log(NetflixSubscriptions);
+          });
+
+          NetflixSubscriptions.forEach(function(d) {
+            d["Total Library Size"] = parseFloat(d["Total Library Size"]);
+            d.Country = parseFloat(d.Country);
+            d["No. of Movies"] = parseFloat(d["No. of Movies"]);
+            d["Cost Per Month - Basic ($)"] = parseFloat(d["Cost Per Month - Basic ($)"]);
+          });
+
+          var CostPerMonth = NetflixSubscriptions.filter(function(d){
+            return d["Cost Per Month - Basic ($)"] < 5;
+          });
+
+          console.log(NetflixSubscriptions);
+          console.log(CostPerMonth);
+         
+    </script>
+  </body>
+</html>
+
+
+
+
+
