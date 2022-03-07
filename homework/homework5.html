@@ -11,9 +11,7 @@
      
      d3.csv("NetflixSubscriptions.csv")
           .then(function(NetflixSubscriptions) {
-            console.log(NetflixSubscriptions);
-          });
-
+          
           NetflixSubscriptions.forEach(function(d) {
             d["Total Library Size"] = parseFloat(d["Total Library Size"]);
             d.Country = parseFloat(d.Country);
@@ -27,7 +25,7 @@
 
           console.log(NetflixSubscriptions);
           console.log(CostPerMonth);
-         
+        });
     </script>
   </body>
 </html>
