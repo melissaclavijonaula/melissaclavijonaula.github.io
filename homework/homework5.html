@@ -7,10 +7,18 @@
   </head>
   <body>
 
+    <h1>Netflix Subscriptions Dec 2021</h1>
+    <h2> Source: https://www.comparitech.com/blog/vpn-privacy/countries-netflix-cost/ </h2>
+    <p>1. Countries where the basic cost per month is lower than $5 </p>
+    <p>2. Countries where the catalog has more than 2000 movies </p>
+    <p>3. Type a country to get information </p>
+
     <script>
      
-     d3.csv("NetflixSubscriptions.csv")
+     d3.csv("./NetflixSubscriptions.csv")
           .then(function(NetflixSubscriptions) {
+
+            if (isNaN(a)) a = 0;
           
           NetflixSubscriptions.forEach(function(d) {
             d["Total Library Size"] = parseFloat(d["Total Library Size"]);
@@ -23,9 +31,26 @@
             return d["Cost Per Month - Basic ($)"] < 5;
           });
 
+          var NumberMovies = NetflixSubscriptions.filter(function(d){
+            return d["No. of Movies"] > 2000;
+          });
+
+          var NameCountry = d3.extent(NetflixSubscriptions, function(d) {
+            return d.Energy;
+          });
+
+          console.log("Country_code", NameCountry);
+
+          var priceByCountry = d3.group(NetflixSubscriptions, function(d) {
+            return d["Country_code"];
+          });
+
           console.log(NetflixSubscriptions);
           console.log(CostPerMonth);
-        });
+          console.log(NumberMovies);
+          console.log(priceByCountry.get("za"));
+          
+          });
     </script>
   </body>
 </html>
