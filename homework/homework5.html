@@ -17,8 +17,6 @@
      
      d3.csv("./NetflixSubscriptions.csv")
           .then(function(NetflixSubscriptions) {
-
-            if (isNaN(a)) a = 0;
           
           NetflixSubscriptions.forEach(function(d) {
             d["Total Library Size"] = parseFloat(d["Total Library Size"]);
