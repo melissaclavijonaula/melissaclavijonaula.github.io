@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homework 6</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+       
+       body {
+         margin:0;
+        }
+
+    </style>
+  </head>
+  <body>
+<h1>Example of bar chart</h1>
+    <svg id= "barchart" >
+        <g id = "shapes" fill="red">  </g>
+        <g id = "shapes">  </g>
+
+        <g id="x" transform="translate(0, 631)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M50,6V0H1316V6"></path><g class="tick" opacity="1" transform="translate(205.26415094339626,0)"><line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text></g><g class="tick" opacity="1" transform="translate(444.1320754716981,0)"><line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text></g><g class="tick" opacity="1" transform="translate(682.9999999999999,0)"><line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3</text></g><g class="tick" opacity="1" transform="translate(921.8679245283017,0)"><line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text></g><g class="tick" opacity="1" transform="translate(1160.7358490566035,0)"><line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text></g></g>
+        <g id="y" transform="translate(50, 0)" fill="none" font-size="10" font-family="sans-serif" text-anchor="end"><path class="domain" stroke="currentColor" d="M-6,631H0V20H-6"></path><g class="tick" opacity="1" transform="translate(0,631)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text></g><g class="tick" opacity="1" transform="translate(0, 574.9813416841018)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text></g><g class="tick" opacity="1" transform="translate(0, 518.9626833682038)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text></g><g class="tick" opacity="1" transform="translate(0, 462.9440555698838)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">30</text></g><g class="tick" opacity="1" transform="translate(0, 406.9253972539857)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text></g><g class="tick" opacity="1" transform="translate(0, 350.9067389380876)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text></g><g class="tick" opacity="1" transform="translate(0, 294.88811084998156)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text></g><g class="tick" opacity="1" transform="translate(0, 238.86945282386952)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">70</text></g><g class="tick" opacity="1" transform="translate(0, 182.85079450797144)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text></g><g class="tick" opacity="1" transform="translate(0, 126.83214374902134)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">90</text></g><g class="tick" opacity="1" transform="translate(0, 70.81349306251776)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text></g><g class="tick" opacity="0.009496701323683417" transform="translate(0, 14.7948442652512)"><line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">110</text></g></g>
+    </svg>
+
+
+    <script>
+      
+      var url = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
+      var frequency = 2 * 1000; // three seconds
+      var dataMax = 10;
+      var data = [];
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var margin = {
+        top: 20,
+        right: 20,
+        bottom: 50,
+        left: 50
+      };
+      var chartWidth = width - margin.left - margin.right;
+      var chartHeight = height - margin.top - margin.bottom;
+      var svg = d3.select("#barchart")
+        .attr("width", width)
+        .attr("height", height);
+
+      var domainValues = d3.range(1, dataMax + 1);
+
+      var x = d3.scaleBand()
+        .domain(domainValues.reverse())
+        .range([margin.left, margin.left + chartWidth])
+        .paddingInner(0.1)
+        .paddingOuter(0.2);
+
+      var barWidth = x.bandwidth();
+
+      function fetchData() {
+
+        d3.json(url)
+          .then(function(users) {
+
+            data.unshift({
+              users: users,
+              timestamp: new Date()
+            });
+
+            if (data.length > dataMax) data.pop();
+
+            var maxUsers = d3.max(data, function(d) {
+              return d.users;
+            });
+
+            var barHeight = d3.scaleLinear()
+              .domain([0, maxUsers])
+              .range([0, chartHeight]);
+
+            var y = d3.scaleLinear()
+              .domain([0, maxUsers])
+              .range([margin.top + chartHeight, margin.top]);
+
+            var yAxis = d3.axisLeft(y);
+            svg.select("#y")
+              .attr("transform", "translate(" + margin.left + ", 0)")
+              .transition().duration(frequency / 2)
+              .call(yAxis);
+
+            var xAxis = d3.axisBottom(x);
+            svg.select("#x")
+              .attr("transform", "translate(0, " + (chartHeight + margin.top) + ")")
+              .transition().duration(frequency / 2)
+              .call(xAxis);
+
+            function zeroState(selection) {
+              selection
+                .attr("height", 0)
+                .attr("y", y(0));
+            }
+
+            function barPosition(selection) {
+              selection
+                .attr("height", function(d) {
+                  return barHeight(d.users);
+                })
+                .attr("y", function(d) {
+                  return y(d.users);
+                });
+            }
+
+            // Data Binding
+            var bars = svg.select("#shapes").selectAll(".bar")
+              .data(data, function(d) {
+                return d.timestamp;
+              });
+
+            // Entering Bars
+            bars.enter().append("rect")
+              .attr("class", "bar")
+              .attr("width", barWidth)
+              .attr("x", function(d, i) {
+                return x(i + 1);
+              })
+              .call(zeroState)
+              .transition().duration(frequency / 2)
+                .call(barPosition);
+
+            // Updating Bars
+            bars
+              .transition().duration(frequency / 2)
+              .attr("x", function(d, i) {
+                return x(i + 1);
+              })
+              .call(barPosition);
+
+            // Exiting Bars
+            bars.exit()
+              .transition().duration(frequency / 2)
+              .call(zeroState)
+              .remove();
+
+          });
+
+      }
+
+      fetchData();
+      setInterval(fetchData, frequency);
+
+    </script>
+  </body>
+</html>
