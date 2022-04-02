@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>World Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    
+    <style>
+        body {
+            margin:0;
+        }
+    </style>
+
+  </head>
+  <body>
+     
+    <svg id="viz">
+
+        <rect id="ocean" fill="cornflowerblue" />
+        <g id="map"></g>
+    </svg>
+
+    <script>
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var svg = d3.select("#viz")
+     .attr("width", width)
+     .attr("height", height);
+ 
+    svg.select("#ocean")
+    .attr("width", width)
+    .attr("height", height);
+    
+
+    var map = svg.select("#map"); // use select when you want to pick more than 1 form
+
+    d3.json("world-alpha3.json")
+      .then(function(world) {
+      console.log(world);
+      
+      var geoJSON = topojson.feature(world, world.objects.countries); // Need to tell them what layers use inside the geojson 
+      console.log(geoJSON) 
+
+      var proj = d3.geoMercator()
+      .fitSize([width, height], geoJSON);
+
+      var path = d3.geoPath()
+      .projection(proj);
+
+      var countries = map.selectAll("path")
+      .data(geoJSON.features);
+
+
+countries.enter().append("path")
+  .attr("d", path)
+  .attr("stroke-width","3px")
+  .attr("fill", "green");
+  
+
+  var points = [
+  {"name": "Boston", "coords": [-71.0589, 42.3601]},
+  {"name": "London", "coords": [-0.1278, 51.5074]}
+    ];
+
+var dots = map.selectAll("circle")
+  .data(points);
+
+dots.enter().append("circle")
+ 
+  .attr("r", 10)
+  .attr("fill","yellow")
+  .attr("transform", function(d){
+    return "translate(" + proj(d.coords) + ")";
+  });
+
+var zoom = d3.zoom()
+  .translateExtent([
+   [0, 0],
+   [width, height]
+])
+  .scaleExtent([1, 8])
+  .on("zoom", zoomed);
+
+function zoomed(event) {
+  map.attr("transform", event.transform);
+}
+
+svg.call(zoom);
+  
+
+    });
+
+    
+
+
+
+    </script>
+
+  </body>
+</html>
