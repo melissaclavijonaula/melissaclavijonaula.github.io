@@ -1,24 +1,54 @@
 body {
     margin: 0;
     font-family: "Arial";
+    color: white;
+    background-color: black;
   }
 
 #banner {
-    background-image: url('./images/netflixanimationback.jpeg');
+    background-image:linear-gradient(to bottom, rgba(245, 246, 252, 0), rgb(0, 0, 0)),
+    url('./images/netflixanimationback.jpeg') ;
     background-position: 50% 100%;
     background-size: cover;
     padding: 20vh 20px;
     text-align: center;
     color: white;
-    text-shadow: black;
-    
-}
+    animation: fadeIn linear 3s;
+    -webkit-animation: fadeIn linear 3s;
+    -moz-animation: fadeIn linear 3s;
+    -o-animation: fadeIn linear 3s;
+    -ms-animation: fadeIn linear 3s;
+  }
+  
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
 
 .section {
     display: flex;
     padding: 50px;
-  }
   
+    }
   .section p {
     flex: 1;
   }
