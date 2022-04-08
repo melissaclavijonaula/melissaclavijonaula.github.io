@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "Arial";
+    font-family: "Kanit", sans-serif;
     color: white;
     background-color: black;
   }
@@ -44,20 +44,22 @@ body {
     100% {opacity:1;}
   }
 
-.section {
+ .section {
     display: flex;
-    padding: 50px;
-  
+    flex-direction: row;
+    padding: 20vh 20px;
+    text-align: center
     }
+
   .section p {
     flex: 1;
+    padding: 20vh 20px;
+
   }
   
   .section svg {
-    border: 1px solid #D81F26;
+    border: 4px solid #D81F26;
     flex: 2;
-    height: 300px;
-    margin: 25px;
   }
   
   @media (max-width: 600px) {
@@ -69,10 +71,5 @@ body {
     }
   }
 
-  #tooltip {
-    display: none;
-    position: absolute;
-    border: 1px;
-  }
 
   

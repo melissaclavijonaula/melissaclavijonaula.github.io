@@ -3,9 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <title>Netflix's Suscriptions</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
     
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200&display=swap">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    
+    
 
   </head>
   <body>
@@ -22,45 +27,26 @@
         </p>
 
     </div>
-       
-        <div class="section">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend egestas aliquet. Suspendisse non felis sed felis
-            pellentesque convallis quis eget arcu. Aliquam eget dolor commodo eros rhoncus egestas. Nullam dapibus eget diam nec
-            accumsan. Fusce tincidunt augue a libero semper vulputate. Fusce vel metus sit amet dolor pulvinar varius sit amet
-            vehicula nibh. Sed ultricies interdum tellus, in varius augue eleifend vel.</p>
-        </div>
-       
-        <div class="section">
-          <svg id="chart1"></svg>
-        </div>
-        
-       
-        <div class="section">
-            <svg id="chart2"></svg>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend egestas aliquet. Suspendisse non felis sed felis
-            pellentesque convallis quis eget arcu. Aliquam eget dolor commodo eros rhoncus egestas. Nullam dapibus eget diam nec
-            accumsan. Fusce tincidunt augue a libero semper vulputate. Fusce vel metus sit amet dolor pulvinar varius sit amet
-            vehicula nibh. Sed ultricies interdum tellus, in varius augue eleifend vel.</p>
-        </div>
-        
-        <div class="section">
-          <svg id="chart3"></svg>
-        </div>
+    <div id= "section">
+      <p>
+        How much are you willing to pay for a movie? A deep dive into prices of Netflix all over the world. 
+      </p>
 
-        <div id="tooltip">
-            Name: <span> id= "Name"</span>
-            Value: $<span id= "value"></span>
-        </div>
+    </div>
 
-        <div class="section">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend egestas aliquet. Suspendisse non felis sed felis
-          pellentesque convallis quis eget arcu. Aliquam eget dolor commodo eros rhoncus egestas. Nullam dapibus eget diam nec
-          accumsan. Fusce tincidunt augue a libero semper vulputate. Fusce vel metus sit amet dolor pulvinar varius sit amet
-          vehicula nibh. Sed ultricies interdum tellus, in varius augue eleifend vel.</p>
-      </div>
+    <div id= "section">
+    <svg id="map1">
+
+      <rect id="ocean" fill="#F0F8FF" />
+      <g id="map" ></g>
+    </svg>
+    </div>
+   
 
       <script src="banner.js"></script>
+      <script src="map1.js"></script>
+
 
   </body>
 </html>
