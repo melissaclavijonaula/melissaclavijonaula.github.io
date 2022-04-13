@@ -1,0 +1,42 @@
+/* --------------  LOAD FONTS FROM SERVER ------------------------------ */
+/* ---- The font-family defines the name that will be used in CSS ------ */ /* --------along with a source with location and  font file name ---- */
+   
+   @font-face {
+    font-family: "IvarHeadline-Regular";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Regular.woff2);
+   }  
+   @font-face {
+    font-family: "IvarHeadline-Italic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Italic.woff2);
+   } 
+   @font-face {
+    font-family: "IvarHeadline-Bold";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Bold.woff2);
+   }  
+   @font-face {
+    font-family: "IvarHeadline-BoldItalic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Italic.woff2);
+   } 
+   @font-face {
+    font-family: "Staff-Regular";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Regular.woff2);
+   }  
+   @font-face {
+    font-family: "Staff-Italic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Italic.woff2);
+   } 
+   @font-face {
+    font-family: "Staff-Bold";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Bold.woff2);
+   }  
+   @font-face {
+    font-family: "Staff-BoldItalic";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-BoldItalic.woff2);
+   } 
+   @font-face {
+    font-family: "Carrie-Regular";
+     src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/VTCCarrie-Regular.woff2);
+   } 
+   
+   
+   
