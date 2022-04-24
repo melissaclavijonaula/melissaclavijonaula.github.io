@@ -53,9 +53,16 @@
 
           if (myData.length) {
             myData = myData[0];
-            console.log(d.id, myData["Total Library Size"]);
+            console.log(d.id, myData["TotalLibrarySize"]);
             return "#D81F26";
           }
+
+          if (myData.length) {
+            myData = myData[0];
+            console.log(d.id, myData["TotalLibrarySize"]);
+            return "#D81F26";
+          }
+
           else {
             return "gray";
           }            
@@ -80,14 +87,15 @@
               myData = myData[0];
               
               d3.select(this)
-                .attr("fill", "green");
+                .attr("fill", "#8B0000");
           
               d3.select("#tooltip")
                 .style("display", "block")
                 .style("top", event.pageY + 20 + "px")
                 .style("left", event.pageX + 20 + "px")
-                .html(`Country: <b>${myData.Country}</b>`
-                `Price: <b>${d.id}</b>`);
+                .html(`Country: <b>${myData.Country}</b>`,
+                `Basic Price Per Month: <b>${myData.CostBasic}</b>`
+                );
             }
 
           })
