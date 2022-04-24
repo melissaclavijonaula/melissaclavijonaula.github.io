@@ -45,33 +45,34 @@
 
         function fillColor(d) {
 
+          var dataMin = 2274;
+          var dataMax = 7325;
           var iso = d.id.toLowerCase();
           var myData = NetflixSubscriptions
             .filter(function(row) {
               return row.Country_code === iso;
             });
+     
+        //Color Scale
+
+         const colorScale = d3.scaleSequential()
+         .interpolator(d3.interpolateRgb("#FEC0B2"+"#D81F26"))
+         .domain([dataMin, dataMax]);
 
           if (myData.length) {
             myData = myData[0];
-            console.log(d.id, myData["TotalLibrarySize"]);
-            return "#D81F26";
-          }
-
-          if (myData.length) {
-            myData = myData[0];
-            console.log(d.id, myData["TotalLibrarySize"]);
-            return "#D81F26";
+           // console.log(d.id, myData["TotalLibrarySize"]);
+            return colorScale (d.id, myData["TotalLibrarySize"]);
           }
 
           else {
             return "gray";
           }            
-
         }
 
         countries.enter().append("path")
           .attr("d", path)
-          .attr("fill", fillColor)
+          .attr("fill",  fillColor)
           .attr("stroke-width", 0.5)
           .attr("stroke", "white")
           .on("mousemove", function(event, d) {
@@ -93,8 +94,12 @@
                 .style("display", "block")
                 .style("top", event.pageY + 20 + "px")
                 .style("left", event.pageX + 20 + "px")
-                .html(`Country: <b>${myData.Country}</b>`,
-                `Basic Price Per Month: <b>${myData.CostBasic}</b>`
+                .html(`Country: <b>${myData.Country}</b>`+
+                `TV Shows: <b>${myData.TVShows}</b>`+
+                `Movies: <b>${myData.Movies}</b>`+
+                `Basic Suscription: <b>${myData.CostBasic}</b>`+
+                `Standard Suscription: <b>${myData.CostStandard}</b>`+
+                `Premium Suscription: <b>${myData.CostPremium}</b>`
                 );
             }
 
