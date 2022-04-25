@@ -42,27 +42,30 @@
 
         var countries = map.selectAll("path")
           .data(geoJSON.features);
+     
+        //Color Scale
 
-        function fillColor(d) {
+        var dataExtent = d3.extent(NetflixSubscriptions, function(d){
+        return d.TotalLibrarySize;
+        });
 
-          var dataMin = 2274;
-          var dataMax = 7325;
+         var colorScale = d3.scaleLinear()
+         .domain(dataExtent)
+         .range(["#FEC0B2"+"#D81F26"]);
+
+         function fillColor(d) {
+        // var dataMin = 2274;
+        //var dataMax = 7325;
           var iso = d.id.toLowerCase();
           var myData = NetflixSubscriptions
             .filter(function(row) {
               return row.Country_code === iso;
             });
-     
-        //Color Scale
-
-         const colorScale = d3.scaleSequential()
-         .interpolator(d3.interpolateRgb("#FEC0B2"+"#D81F26"))
-         .domain([dataMin, dataMax]);
 
           if (myData.length) {
             myData = myData[0];
            // console.log(d.id, myData["TotalLibrarySize"]);
-            return colorScale (d.id, myData["TotalLibrarySize"]);
+            return colorScale (myData["TotalLibrarySize"]);
           }
 
           else {
@@ -88,7 +91,7 @@
               myData = myData[0];
               
               d3.select(this)
-                .attr("fill", "#8B0000");
+                .attr("fill", "#8B0002");
           
               d3.select("#tooltip")
                 .style("display", "block")
@@ -97,9 +100,9 @@
                 .html(`Country: <b>${myData.Country}</b>`+
                 `TV Shows: <b>${myData.TVShows}</b>`+
                 `Movies: <b>${myData.Movies}</b>`+
-                `Basic Suscription: <b>${myData.CostBasic}</b>`+
-                `Standard Suscription: <b>${myData.CostStandard}</b>`+
-                `Premium Suscription: <b>${myData.CostPremium}</b>`
+                `Basic Suscription (USD): <b>${myData.CostBasic}</b>`+
+                `Standard Suscription (USD): <b>${myData.CostStandard}</b>`+
+                `Premium Suscription (USD): <b>${myData.CostPremium}</b>`
                 );
             }
 
