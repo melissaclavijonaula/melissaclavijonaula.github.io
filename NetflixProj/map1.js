@@ -54,19 +54,38 @@
          .range(["#FEC0B2"+"#D81F26"]);
 
          function fillColor(d) {
-        // var dataMin = 2274;
-        //var dataMax = 7325;
+         // var dataMin = 2274;
+         //var dataMax = 7325;
+         //var Medium = 5000;
           var iso = d.id.toLowerCase();
           var myData = NetflixSubscriptions
             .filter(function(row) {
               return row.Country_code === iso;
             });
 
+         // if (myData.length) {
+         // myData = myData[0];
+         // console.log(d.id, myData["TotalLibrarySize"]);
+         //return colorScale (myData["TotalLibrarySize"]);
+         //}
+
           if (myData.length) {
             myData = myData[0];
-           // console.log(d.id, myData["TotalLibrarySize"]);
-            return colorScale (myData["TotalLibrarySize"]);
+            console.log(d.id, myData["TotalLibrarySize"]);
+            return "#D81F26";
           }
+
+         // if (myData.length > 5000) {
+         // myData = myData[0];
+         //console.log(d.id, myData["TotalLibrarySize"]);
+         //return "#D81F26";
+         // }
+
+         //else if (myData.length <5000) {
+         //myData = myData[0];
+         //console.log(d.id, myData["TotalLibrarySize"]);
+         //return "#FEC0B2"
+         //}
 
           else {
             return "gray";
@@ -97,16 +116,16 @@
                 .style("display", "block")
                 .style("top", event.pageY + 20 + "px")
                 .style("left", event.pageX + 20 + "px")
-                .html(`Country: <b>${myData.Country}</b>`+
-                `TV Shows: <b>${myData.TVShows}</b>`+
-                `Movies: <b>${myData.Movies}</b>`+
-                `Basic Suscription (USD): <b>${myData.CostBasic}</b>`+
-                `Standard Suscription (USD): <b>${myData.CostStandard}</b>`+
-                `Premium Suscription (USD): <b>${myData.CostPremium}</b>`
+                .html(`<i>Country</i>: <b>${myData.Country}</b>`+
+                `<i>TV Shows</i>: <b>${myData.TVShows}</b>`+
+                `<i>Movies</i>: <b>${myData.Movies}</b>`+
+                `<i>Basic Suscription (USD)</i>: <b>${myData.CostBasic}</b>`+
+                `<i>Standard Suscription (USD)</i>: <b>${myData.CostStandard}</b>`+
+                `<i>Premium Suscription (USD)</i>: <b>${myData.CostPremium}</b>`
                 );
             }
-
           })
+
           .on("mouseout", function(event, d) {
             d3.select(this)
               .attr("fill", fillColor(d));
