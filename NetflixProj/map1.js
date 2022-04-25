@@ -51,7 +51,7 @@
 
          var colorScale = d3.scaleLinear()
          .domain(dataExtent)
-         .range(["#FEC0B2"+"#D81F26"]);
+         .range(["#FEC0B2", "#D81F26"]);
 
          function fillColor(d) {
          // var dataMin = 2274;
@@ -72,7 +72,8 @@
           if (myData.length) {
             myData = myData[0];
             console.log(d.id, myData["TotalLibrarySize"]);
-            return "#D81F26";
+            return colorScale (myData["TotalLibrarySize"]);
+            // return "#D81F26";
           }
 
          // if (myData.length > 5000) {
