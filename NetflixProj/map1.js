@@ -51,7 +51,7 @@
 
          var colorScale = d3.scaleLinear()
          .domain(dataExtent)
-         .range(["#FEC0B2", "#D81F26"]);
+         .range(["#FF9494","#800000"]);
 
          function fillColor(d) {
          // var dataMin = 2274;
@@ -89,7 +89,7 @@
          //}
 
           else {
-            return "gray";
+            return "#D3D3D3";
           }            
         }
 
@@ -111,19 +111,19 @@
               myData = myData[0];
               
               d3.select(this)
-                .attr("fill", "#8B0002");
+                .attr("fill", "#DC0000");
           
               d3.select("#tooltip")
                 .style("display", "block")
                 .style("top", event.pageY + 20 + "px")
                 .style("left", event.pageX + 20 + "px")
-                .html(`<i>Country</i>: <b>${myData.Country}</b>`+
-                `<i>TV Shows</i>: <b>${myData.TVShows}</b>`+
-                `<i>Movies</i>: <b>${myData.Movies}</b>`+
-                `<i>Basic Suscription (USD)</i>: <b>${myData.CostBasic}</b>`+
-                `<i>Standard Suscription (USD)</i>: <b>${myData.CostStandard}</b>`+
-                `<i>Premium Suscription (USD)</i>: <b>${myData.CostPremium}</b>`
-                );
+                .html(`<i>Country</i>: <b>${myData.Country}</b> <br>
+                       <i>TV Shows</i>: <b>${myData.TVShows}</b> <br>
+                       <i>Movies</i>: <b>${myData.Movies}</b> <br>
+                       <i>Basic Suscription (USD)</i>: <b>${myData.CostBasic}</b> <br>
+                       <i>Standard Suscription (USD)</i>: <b>${myData.CostStandard}</b> <br>
+                       <i>Premium Suscription (USD)</i>: <b>${myData.CostPremium}</b>`
+              );
             }
           })
 
@@ -138,4 +138,4 @@
 
       });
 
-     
+      

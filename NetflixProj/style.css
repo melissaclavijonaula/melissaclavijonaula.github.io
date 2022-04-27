@@ -70,11 +70,16 @@ body {
 
 #tooltip {
   display: none;
-  background-color: rgb(169, 169, 169);
+  background-color: rgb(74, 73, 73);
   padding: .5em;
   text-shadow: #090909 0 1px 0;
   border-radius: 4px;
   opacity: 0.9;
   position: absolute;
   text-align:left;
+}
+
+#lineargradient {
+
+  
 }
